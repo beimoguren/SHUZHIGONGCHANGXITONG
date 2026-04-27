@@ -2968,6 +2968,14 @@
             };
             document.getElementById('headerTitle').textContent = titles[pageId] || '数智工厂';
             
+            // 控制审核按钮的显示/隐藏
+            const approvalActions = document.getElementById('docApprovalActions');
+            if (pageId === 'document-detail') {
+                approvalActions.style.display = 'block';
+            } else {
+                approvalActions.style.display = 'none';
+            }
+            
             window.scrollTo(0, 0);
             
             if (pageId === 'employee') renderEmployees();
