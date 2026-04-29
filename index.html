@@ -373,6 +373,10 @@
             background-color: var(--color-bg-container);
         }
 
+        #docApprovalActions {
+            display: none;
+        }
+
         /* Filter Bar */
         .filter-bar {
             display: flex;
@@ -2964,17 +2968,9 @@
                 'training': '培训管理', 'training-add': '新增培训',
                 'certificate': '证件管理', 'certificate-add': '新增证件',
                 'visitor': '外来人员', 'visitor-add': '新增访客',
-                'document': '文号管理', 'document-add': '创建文号'
+                'document': '文号管理', 'document-add': '创建文号', 'document-edit': '编辑文号', 'document-detail': '文号详情'
             };
             document.getElementById('headerTitle').textContent = titles[pageId] || '数智工厂';
-            
-            // 控制审核按钮的显示/隐藏
-            const approvalActions = document.getElementById('docApprovalActions');
-            if (pageId === 'document-detail') {
-                approvalActions.style.display = 'block';
-            } else {
-                approvalActions.style.display = 'none';
-            }
             
             window.scrollTo(0, 0);
             
@@ -3980,7 +3976,6 @@
             document.getElementById('docEditYear').value = doc.year;
             document.getElementById('docEditSerial').value = doc.serial_no;
             document.getElementById('docEditTitle').value = doc.document_title || '';
-            document.getElementById('docEditRefTo').value = doc.ref_to || '';
             
             updateDocPreview();
             navigateTo('document-edit');
@@ -4011,8 +4006,7 @@
                     year: year,
                     serial_no: serial,
                     document_title: document.getElementById('docEditTitle').value,
-                    department_name: dept,
-                    ref_to: document.getElementById('docEditRefTo').value
+                    department_name: dept
                 };
                 
                 saveData();
